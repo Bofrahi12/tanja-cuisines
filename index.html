@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TANJA CUISINES — Cuisines sur mesure à Tanger | Démo VERTEX WEB</title>
+<meta name="description" content="Faites défiler : la cuisine se construit devant vous. Cuisines sur mesure, dressings et pierre naturelle à Tanger. Site de démonstration VERTEX WEB.">
+<style>
+:root{--green:#16382a;--green2:#1e4a37;--cream:#f4efe4;--paper:#faf7f0;--brass:#c9a227;--ink:#14201a;--muted:#5d6d63}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--paper);color:var(--ink);overflow-x:clip}
+a{color:inherit;text-decoration:none}
+header{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:rgba(250,247,240,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(20,32,26,.08)}
+.logo{font-weight:800;letter-spacing:.14em;font-size:15px}.logo span{color:var(--brass)}
+.demo-badge{font-size:11px;font-weight:700;letter-spacing:.08em;background:var(--green);color:var(--cream);padding:5px 10px;border-radius:99px}
+.cta-btn{background:var(--green);color:#fff;padding:10px 18px;border-radius:99px;font-weight:700;font-size:14px}
+.cta-btn.gold{background:var(--brass);color:var(--ink)}
+/* ---- scroll film ---- */
+#film-wrap{height:520vh;position:relative;background:#0c1712}
+#film-stage{position:sticky;top:0;height:100svh;overflow:hidden}
+#film{position:absolute;inset:0;width:100%;height:100%}
+.film-ui{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:86px 22px 30px;pointer-events:none;color:#fff}
+.film-kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--brass);font-weight:700;text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.film-title{font-size:clamp(30px,6.5vw,58px);font-weight:800;line-height:1.08;max-width:640px;text-shadow:0 2px 24px rgba(0,0,0,.55)}
+.film-cap{align-self:flex-start;background:rgba(10,20,15,.55);backdrop-filter:blur(6px);border-left:3px solid var(--brass);padding:12px 16px;border-radius:0 12px 12px 0;max-width:440px}
+.film-cap b{display:block;font-size:19px;margin-bottom:3px}
+.film-cap p{font-size:14px;color:#e8e2d2;line-height:1.5}
+.film-bottom{display:flex;justify-content:space-between;align-items:flex-end}
+.progress{font-weight:800;font-size:15px;background:rgba(10,20,15,.55);padding:7px 13px;border-radius:99px}
+.scroll-hint{font-size:12px;letter-spacing:.25em;text-transform:uppercase;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+#loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#0c1712;color:var(--cream);font-size:14px;letter-spacing:.2em;z-index:5}
+/* ---- sections ---- */
+.marquee{background:var(--green);color:var(--cream);overflow:hidden;white-space:nowrap;padding:13px 0;font-weight:700;letter-spacing:.12em;font-size:14px}
+.marquee div{display:inline-block;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+section.blk{padding:74px 22px;max-width:1080px;margin:0 auto}
+h2{font-size:clamp(26px,4.5vw,40px);line-height:1.15;margin-bottom:14px}
+h2 em{color:var(--green2);font-style:normal;border-bottom:3px solid var(--brass)}
+.lead{color:var(--muted);font-size:17px;line-height:1.65;max-width:640px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:34px}
+.card{background:#fff;border:1px solid rgba(20,32,26,.09);border-radius:18px;padding:24px;box-shadow:0 8px 30px rgba(20,32,26,.05)}
+.card .n{color:var(--brass);font-weight:800;font-size:13px;letter-spacing:.2em}
+.card h3{font-size:19px;margin:9px 0 8px}
+.card p{color:var(--muted);line-height:1.6;font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:30px}
+.step{border-top:3px solid var(--green);padding-top:14px}
+.step b{font-size:16px;display:block;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14px;line-height:1.6}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:30px}
+.gallery img{width:100%;height:210px;object-fit:cover;border-radius:16px}
+.gallery figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+#contact{background:var(--green);color:var(--cream);border-radius:26px;padding:44px 26px;text-align:center;max-width:1080px;margin:0 auto 70px}
+#contact h2{color:#fff}
+#contact p{color:#cfd8cd;line-height:1.65;max-width:520px;margin:0 auto 24px}
+footer{padding:26px 22px;text-align:center;color:var(--muted);font-size:13px;line-height:1.7;border-top:1px solid rgba(20,32,26,.08)}
+.wa-float{position:fixed;right:16px;bottom:16px;z-index:60;background:#25d366;color:#fff;font-weight:800;padding:13px 19px;border-radius:99px;box-shadow:0 10px 26px rgba(0,0,0,.25);font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">TANJA <span>CUISINES</span></div>
+  <div class="demo-badge">DÉMO · VERTEX WEB</div>
+  <a class="cta-btn" href="#contact">Devis gratuit</a>
+</header>
+
+<div id="film-wrap">
+  <div id="film-stage">
+    <canvas id="film"></canvas>
+    <div id="loader">CHARGEMENT DU CHANTIER…</div>
+    <div class="film-ui">
+      <div>
+        <div class="film-kicker">Cuisines sur mesure · Tanger</div>
+        <div class="film-title">Faites défiler.<br>La cuisine se construit.</div>
+      </div>
+      <div class="film-bottom">
+        <div class="film-cap"><b id="cap-t">01 — La pièce vide</b><p id="cap-p">Tout commence par un espace nu, face à la baie de Tanger.</p></div>
+        <div style="text-align:right">
+          <div class="progress" id="prog">0%</div>
+          <div class="scroll-hint" style="margin-top:10px">Scroll ↓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="marquee"><div>CUISINES SUR MESURE ✦ DRESSINGS ✦ PLANS EN PIERRE ✦ POSE EN 5 JOURS ✦ TANGER ✦ CUISINES SUR MESURE ✦ DRESSINGS ✦ PLANS EN PIERRE ✦ POSE EN 5 JOURS ✦ TANGER ✦&nbsp;</div></div>
+
+<section class="blk">
+  <h2>Le métier, <em>étape par étape</em></h2>
+  <p class="lead">Vous venez de le voir : une cuisine TANJA se monte comme un meuble — fabriquée à l'atelier, ajustée au mur près, posée par une seule équipe. Pas de sous-traitance, pas de surprise.</p>
+  <div class="cards">
+    <div class="card"><div class="n">01</div><h3>Caissons & façades</h3><p>Façades shaker ou planes, laquées ou bois massif, ajustées aux murs qui ne sont jamais tout à fait droits.</p></div>
+    <div class="card"><div class="n">02</div><h3>Pierre naturelle</h3><p>Marbre, quartz ou granit : découpé, poli deux fois, veinage assorti à l'œil — l'îlot en cascade qui finit la pièce.</p></div>
+    <div class="card"><div class="n">03</div><h3>Laiton & lumière</h3><p>Quincaillerie laiton, suspensions soufflées main, électroménager intégré. La finition, c'est le produit.</p></div>
+  </div>
+</section>
+
+<section class="blk" style="padding-top:0">
+  <h2>Le chantier, <em>en images</em></h2>
+  <div class="gallery">
+    <figure><img src="stages/stage1.jpg" alt="Pièce vide avant travaux"><figcaption>Avant — la pièce vide</figcaption></figure>
+    <figure><img src="stages/stage2.jpg" alt="Caissons posés"><figcaption>Étape 1 — les caissons</figcaption></figure>
+    <figure><img src="stages/stage3.jpg" alt="Plan en marbre et îlot"><figcaption>Étape 2 — la pierre</figcaption></figure>
+    <figure><img src="stages/stage4.jpg" alt="Cuisine terminée au coucher du soleil"><figcaption>Après — prête pour le dîner</figcaption></figure>
+  </div>
+</section>
+
+<section class="blk" style="padding-top:0">
+  <h2>Un process <em>sans surprise</em></h2>
+  <div class="steps">
+    <div class="step"><b>1 · Mesures chez vous</b><p>Prise de cotes au laser et écoute de vos habitudes — gratuit, à Tanger et environs.</p></div>
+    <div class="step"><b>2 · Conception 3D</b><p>Vous voyez votre cuisine sous tous les angles avant le premier coup de scie.</p></div>
+    <div class="step"><b>3 · Fabrication atelier</b><p>Caissons et façades fabriqués et laqués dans notre atelier, pierre taillée sur gabarit.</p></div>
+    <div class="step"><b>4 · Pose en 5 jours</b><p>Une seule équipe, du premier caisson à la dernière poignée en laiton.</p></div>
+  </div>
+</section>
+
+<div id="contact">
+  <h2>Votre cuisine commence par un scroll.</h2>
+  <p>Devis et conception 3D gratuits. Écrivez-nous sur WhatsApp — réponse le jour même, mesures chez vous sous 48 h à Tanger.</p>
+  <a class="cta-btn gold" href="https://wa.me/212693981822?text=Bonjour%20TANJA%20CUISINES%2C%20je%20veux%20un%20devis%20gratuit%20pour%20ma%20cuisine%20sur%20mesure.">Demander mon devis WhatsApp</a>
+</div>
+
+<footer>
+  TANJA CUISINES — marque fictive. Site de démonstration réalisé par <b>VERTEX WEB</b> (Tanger) pour montrer le format « scroll-to-build » : le chantier se construit pendant que le client fait défiler.<br>
+  Les photos du chantier sont des visuels générés pour la démo.
+</footer>
+
+<a class="wa-float" href="https://wa.me/212693981822?text=Bonjour%20TANJA%20CUISINES%2C%20je%20veux%20un%20devis%20gratuit.">WhatsApp</a>
+
+<script>
+const canvas = document.getElementById('film'), ctx = canvas.getContext('2d');
+const caps = [
+  ['01 — La pièce vide', "Tout commence par un espace nu, face à la baie de Tanger."],
+  ['02 — Les caissons', "Des façades vert forêt, fabriquées à l'atelier et ajustées au mur près."],
+  ['03 — La pierre', "Un marbre veiné, assorti à l'œil, qui se plie en cascade sur l'îlot."],
+  ['04 — Laiton & lumière', "Le laiton chauffe, la lumière tombe. La cuisine est prête pour le dîner."]
+];
+let N = 0, frames = [], cur = 0, target = 0;
+function fit(){ const d = Math.min(devicePixelRatio||1, 1.5); canvas.width = innerWidth*d; canvas.height = innerHeight*d; draw(); }
+function draw(){
+  if(!frames.length || !frames[Math.round(cur)]) return;
+  const img = frames[Math.round(cur)], cw = canvas.width, ch = canvas.height;
+  const s = Math.max(cw/img.width, ch/img.height), w = img.width*s, h = img.height*s;
+  ctx.clearRect(0,0,cw,ch); ctx.drawImage(img, (cw-w)/2, (ch-h)/2, w, h);
+}
+async function load(){
+  try{ N = parseInt(await (await fetch('frames.txt')).text()) || 0; }catch(e){ N = 0; }
+  let loaded = 0;
+  for(let i=1;i<=N;i++){
+    const img = new Image();
+    img.src = 'film/f' + String(i).padStart(3,'0') + '.webp';
+    await new Promise(r=>{ img.onload = img.onerror = r; });
+    frames.push(img); loaded++;
+    if(loaded===1){ document.getElementById('loader').style.display='none'; draw(); }
+  }
+}
+function onScroll(){
+  const wrap = document.getElementById('film-wrap'), r = wrap.getBoundingClientRect();
+  const total = wrap.offsetHeight - innerHeight;
+  const p = Math.min(1, Math.max(0, -r.top/total));
+  target = p * (N-1);
+  document.getElementById('prog').textContent = Math.round(p*100) + '%';
+  const idx = Math.min(3, Math.floor(p*4));
+  document.getElementById('cap-t').textContent = caps[idx][0];
+  document.getElementById('cap-p').textContent = caps[idx][1];
+}
+(function loop(){ cur += (target-cur)*0.12; draw(); requestAnimationFrame(loop); })();
+addEventListener('scroll', onScroll, {passive:true});
+addEventListener('resize', fit);
+fit(); load(); onScroll();
+</script>
+</body>
+</html>
